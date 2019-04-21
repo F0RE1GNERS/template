@@ -1,0 +1,110 @@
+\documentclass[10pt]{article}
+\usepackage[left=0.4in,right=0.4in,top=0.7in,bottom=0.4in]{geometry}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{tocloft}
+\usepackage{pdflscape}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{minted}
+\usepackage{titlesec}
+
+\titlespacing\section{0pt}{15pt}{0pt}
+\titlespacing\subsection{0pt}{5pt}{0pt}
+\titlespacing\subsubsection{0pt}{5pt}{0pt}
+
+\renewcommand*{\ttdefault}{pcr}
+\renewcommand\cftsecfont{\fontsize{8}{9}\bfseries}
+\renewcommand\cftsecpagefont{\fontsize{8}{9}\mdseries}
+\renewcommand\cftsubsecfont{\fontsize{5}{6}\mdseries}
+\renewcommand\cftsubsecpagefont{\fontsize{5}{6}\mdseries}
+\renewcommand\cftsecafterpnum{\vspace{-1ex}}
+\renewcommand\cftsubsecafterpnum{\vspace{-1ex}}
+
+\usepackage[sfdefault]{roboto}  %% Option 'sfdefault' only if the base font of the document is to be sans serif
+\usepackage{sourcecodepro}
+\usepackage[T1]{fontenc}
+
+\lstdefinestyle{shared}{
+    belowcaptionskip=1\baselineskip,
+    breaklines=true,
+    xleftmargin=0ex,
+    showstringspaces=false,
+    basicstyle=\fontsize{6}{6}\ttfamily,
+    aboveskip=0ex,
+    belowskip=0ex
+}
+\lstdefinestyle{cpp}{
+	style=shared,
+    language=C++,
+    keywordstyle=\bfseries\color{green!40!black},
+    commentstyle=\itshape\color{red!80!black},
+    identifierstyle=\color{blue},
+    stringstyle=\color{purple!40!black},
+}
+\lstdefinestyle{java}{
+    style=shared,
+    language=Java,
+    keywordstyle=\bfseries\color{green!40!black},
+    commentstyle=\itshape\color{purple!40!black},
+    identifierstyle=\color{blue},
+    stringstyle=\color{orange},
+}
+\lstdefinestyle{py}{
+    style=shared,
+    language=Python,
+    keywordstyle=\bfseries\color{green!40!black},
+    commentstyle=\itshape\color{purple!40!black},
+    identifierstyle=\color{blue},
+    stringstyle=\color{orange},
+}
+\lstdefinestyle{txt}{
+    style=shared,
+}
+\lstset{escapechar=@}
+
+\pagestyle{fancy}
+\fancyhead[L]{East China Normal University}
+\fancyhead[R]{\thepage}
+\fancyfoot[C]{}
+
+\fancypagestyle{plain}
+{
+\fancyhead[L]{East China Normal University}
+\fancyhead[R]{\thepage}
+\fancyfoot[C]{}
+}
+
+\title{\vspace{-4ex}\Large{ECNU ICPC \\ Team Reference Document}}
+\author{}
+\date{}
+
+\begin{document}
+\begin{landscape}
+\begin{multicols}{3}
+
+\maketitle
+\vspace{-10ex}
+
+\hspace*{-\parindent}%
+\begin{minipage}{0.45\linewidth}
+\begin{center}
+F0RE1GNERS \\
+March 2019
+\end{center}
+\end{minipage}
+\begin{minipage}{0.55\linewidth}
+\includegraphics[width=0.9\linewidth]{signature-from-tourist.png}
+\end{minipage}
+
+\tableofcontents
+\pagestyle{fancy}
+
+\input contents.tex
+
+
+\end{multicols}
+\end{landscape}
+\end{document}
