@@ -1,10 +1,10 @@
-
-
 ## 关于模板库
+
+[PDF 下载](https://F0RE1GNERS.github.io/template/template.pdf)
 
 由 ECNU ~~现役~~半退役队伍 F0RE1GNERS 的队员维护，队伍 [wiki链接](https://acm.ecnu.edu.cn/wiki/index.php?title=ECNU_Foreigners_(2018))（[备用链接](https://eoj.i64d.com/wiki/index.php?title=ECNU_Foreigners_(2018))）。
 
-F0RE1GNERS 于 2019.04 的 43rd ICPC World Finals 后退役。WF 的 TRD 仅供留念（内容略有删减）。
+F0RE1GNERS 于 2019.04 的 43rd ICPC World Finals 后退役。[WF 的 TRD](https://F0RE1GNERS.github.io/template/WF-Team-Reference-Document.pdf) 仅供留念（内容略有删减）。
 
 F0RE1GNERS (IO%) 将会参加 2019 年的若干场区域赛，有幸与大家再度相会。
 

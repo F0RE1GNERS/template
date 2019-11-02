@@ -1,0 +1,59 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-python@v1
+      with:
+        python-version: '3.x' # Version range or exact version of a Python version to use, using semver version range syntax.
+        architecture: 'x64' # (x64 or x86)
+    - name: Install Pandoc
+      run: |
+        mkdir -p /tmp/pandoc
+        cd /tmp/pandoc
+        python -m pip --no-cache-dir install setuptools wheel
+        python -m pip --no-cache-dir install pandocfilters Pygments
+        sudo apt install -y texlive texlive-xetex latexmk wget
+        wget -q "https://github.com/jgm/pandoc/releases/download/2.7.3/pandoc-2.7.3-1-amd64.deb"
+        sudo dpkg -i pandoc-2.7.3-1-amd64.deb
+        rm -rf *.deb
+    - name: Install Fonts
+      run: |
+        mkdir -p /tmp/adodefont
+        cd /tmp/adodefont
+        wget -q -O source-code-pro.zip https://github.com/adobe-fonts/source-code-pro/archive/2.030R-ro/1.050R-it.zip
+        wget -q -O source-han-serif.zip https://github.com/adobe-fonts/source-han-serif/archive/1.001R.zip
+        wget -q -O source-han-sans.zip https://github.com/adobe-fonts/source-han-sans/archive/2.001R.zip
+        unzip -q source-code-pro.zip -d source-code-pro
+        unzip -q source-han-serif.zip -d source-han-serif
+        unzip -q source-han-sans.zip -d source-han-sans
+        mkdir -p ~/.fonts
+        cp -v source-code-pro/*/OTF/*.otf ~/.fonts/
+        cp -v source-han-serif/*/SubsetOTF/*/*.otf ~/.fonts/
+        cp -v source-han-sans/*/SubsetOTF/*/*.otf ~/.fonts/
+        fc-cache -f
+        rm -rf source-code-pro{,.zip} source-han-serif{,.zip} source-han-sans{,.zip}
+    - name: Generate PDF
+      run: |
+        mkdir -p ~/.pandoc/templates
+        cp pandoc/algo.latex ~/.pandoc/templates/
+        sh pandoc/gen.sh
+    - name: Deploy
+      run: |
+        git clone -b gh-pages https://oauth2:${{secrets.ACCESS_TOKEN}}@github.com/F0RE1GNERS/template /tmp/template
+        cp template.pdf /tmp/template/
+        cd /tmp/template
+        git add template.pdf
+        git config --global user.email "bot@foreigners.io"
+        git config --global user.name "F0RE1GNERS BOT"
+        git commit -m "Auto-generated PDF commit"
+        git push
